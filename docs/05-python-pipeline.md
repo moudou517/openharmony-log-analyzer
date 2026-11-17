@@ -66,13 +66,13 @@ collector:
       baudrate: 115200
       source_kind: hilog
       enabled: true
-    - name: mcu-serial
+    - name: mcu-serial        # 历史扩展位：本项目只有一个节点、一路串口（板载 USB 转 UART），
+                              # 不会产生这种源；保留配置项与解析能力，只为旧数据与回归测试兼容
       type: serial
-      port: COM3            # STM32 的虚拟串口（先到设备管理器确认；若最小系统板无板载
-                            # 串口芯片，则需经 USB-TTL 接入，见 docs/03 §3.1.2）
+      port: COM3            # 若日后真接了第二路串口，先到设备管理器确认端口号
       baudrate: 115200
       source_kind: mcu
-      enabled: true
+      enabled: false        # 本项目固定关闭
     - name: mqtt-fallback
       type: mqtt
       broker: 192.168.1.100
@@ -660,11 +660,13 @@ python -m agri_logger stats              # 采集统计：行数/解析率/连�
 ════════ 采集统计（运行 02:14:33） ════════
 源             行数     解析成功   解析失败   成功率   重连   连续性
 hilog-serial   8,412    8,409      3         99.96%   1     99.94%
-mcu-serial     4,203    4,201      2         99.95%   0     99.98%
 ──────────────────────────────────────────
-合计          12,615   12,610      5         99.96%   1     99.95%
-字节数 1.8 MB ｜ 平均速率 1.56 行/秒 ｜ 峰值 12.3 行/秒
+合计           8,412    8,409      3         99.96%   1     99.94%
+字节数 1.2 MB ｜ 平均速率 1.04 行/秒 ｜ 峰值 8.7 行/秒
 ```
+
+> 本项目只有**一路设备日志流**（串口为主、MQTT 为备）。两条通道同时开启时会多出一行 `mqtt-fallback`，
+> 那是同一份日志的另一个来源——**不要把两行相加当成"日志变多了"**。
 
 ---
 
@@ -678,6 +680,8 @@ from agri_logger.parser.parser import LogParser
 # 样例直接取自 docs/02-log-spec.md §7，保证"规范—代码—测试"三者一致
 GOOD_HILOG = "000120.456789 I A001 AgriSensor: z=A s=24 t=265 h=612 l=830 tick=120456"
 GOOD_ERR   = "000510.334455 E A001 AgriSensor: z=B s=103 fault=F1002 c=1 r=3 cost=5001"
+# 历史扩展格式（非 OpenHarmony 前缀）：本项目只有一块板，不产生这类行。
+# 保留该样例，是为了保证解析器对旧数据的兼容性不被误删——格式已冻结，删了就破坏兼容。
 GOOD_MCU   = "[STM32] 000513 I SENSOR: s=103 t=248 h=612 a=830"
 BAD_LINES  = ["", "   ", "garbage", "000120.456789 X A001 T: x",
               "000120.456789 I A001 AgriSensor", "\x00\x01\x02", "A" * 10000]
