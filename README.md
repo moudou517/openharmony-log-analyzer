@@ -1,4 +1,4 @@
-# OpenHarmony 系统日志异常智能聚合分析工具 —— 实验指导书（总册）
+﻿# OpenHarmony 系统日志异常智能聚合分析工具 —— 实验指导书（总册）
 
 > 适用课题：OpenHarmony 系统日志异常智能聚合分析工具（OpenHarmony 开源大赛·可观测性方向）
 > 硬件：华清远见 FS-Hi3861 鸿蒙开发板 ×1 —— **一块板 = 一个传感器节点**，板载 SHT20 出温度/湿度、板载 AP3216C 出光照
@@ -300,7 +300,6 @@ KPI / 时间线 / 异常族 / 根因报告 / 日志流**全部只由这个棚的
 | [docs/01-requirements.md](docs/01-requirements.md) | 选题定位、需求拆解、技术指标、评分标准对照表 | 组长 / 答辩人 |
 | [docs/02-log-spec.md](docs/02-log-spec.md) | **日志规范白皮书**（HiLog 真实约束 + 字段字典 + 故障码/错误码字典 + 冻结正则） | **全体必读，W2 冻结** |
 | [docs/04-firmware.md](docs/04-firmware.md) | **基于本仓库 SDK 的固件开发**（可复用的 40 个 demo、板载 SHT20/AP3216C 驱动、故障注入、模拟器） | 固件负责人 |
-| [docs/05-python-pipeline.md](docs/05-python-pipeline.md) | Python 采集/解析/过滤/模板挖掘/聚类/存储，含可运行代码骨架 | Python 负责人 |
 | [docs/06-llm-analysis.md](docs/06-llm-analysis.md) | LLM 分层调用架构、提示词工程、缓存与成本控制、三级降级、防幻觉 | 算法负责人 |
 | [docs/07-evaluation.md](docs/07-evaluation.md) | 评测方案、标注数据集、指标定义、消融实验、报告模板 | 全体 |
 | [docs/08-deliverables-and-defense.md](docs/08-deliverables-and-defense.md) | 交付物清单、技术报告大纲、答辩问题库（18 问）、分组任务清单 | 组长 / 答辩人 |
@@ -310,7 +309,6 @@ KPI / 时间线 / 异常族 / 根因报告 / 日志流**全部只由这个棚的
 | [docs/14-api-interface-spec.md](docs/14-api-interface-spec.md) | **接口规范**（19 个 HTTP 接口的字段、类型、轮询节奏） | 做前端的同学 |
 | [docs/15-data-formats.md](docs/15-data-formats.md) | **数据格式总册**（串口物理层 → 日志行 → 字段编码 → LogRecord → 报告 Markdown → 告警事件，6 层全带真实样例） | 做前端的同学 / 答辩人 |
 | [docs/16-frontend-dev-guide.md](docs/16-frontend-dev-guide.md) | **前端开发规范**（文件组织、接入方式、一键更换、六条硬规范、自检清单） | 做前端的同学 |
-| [docs/00-interface-handoff.md](docs/00-interface-handoff.md) | **接口交接文档**（B、C 同学从这里开始，含四条自检命令） | B / C |
 
 > 编号 03/10/11 已退役并删除，编号保留不复用。
 
