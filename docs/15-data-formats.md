@@ -1033,7 +1033,7 @@ elif self.mode == "raw":
 
 | 项目 | 值 | 出处 |
 |---|---|---|
-| 写入目录 | `reports_live/`（实时/自动生成）、`reports_llm/`、`reports/`（历史样例） | `dashboard_server.py` `REPORT_DIRS` |
+| 写入目录 | `reports_live/`（运行时自动生成，**不入库**）、`reports_llm/`（预留，暂空）、`reports/`（**入库的样例报告**） | `dashboard_server.py` `REPORT_DIRS` |
 | 根因报告文件名 | `"%s_%s.md" % (window_id, 标题)` | `dashboard_server.py` |
 | 健康报告文件名 | `"健康报告_%s.md" % strftime("%m%d_%H%M%S")` | `dashboard_server.py` |
 | 编码 | UTF-8，**`\n` 换行**、末尾无强制空行 | `Path.write_text(encoding="utf-8")` |
